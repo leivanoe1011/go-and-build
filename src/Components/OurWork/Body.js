@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactPlayer from 'react-player'
 
 // Begin Bootstrap Components
 import Col from 'react-bootstrap/Col'
@@ -15,7 +16,14 @@ import img2 from '../../img/WhatWeDo/SamuelSon.jpg'
 import img3 from '../../img/WhatWeDo/IMG_1602.PNG'
 // End Images
 
+// import kidImage from '../../img/Home/48086a28-4878-4682-81c6-300770c87d4c.jpg'
+
 function Body() {
+  const videoGuatemala = 'https://vimeo.com/746620955'
+
+  const playerHeight = '42vw' // 800 px
+  const playerWidth = '62.5vw' // 1200 px
+
   return (
     <>
       <Container fluid>
@@ -23,18 +31,22 @@ function Body() {
           <Col className="text-center">
             <Row sm={1} md={1} lg={1} className="d-flex justify-content-center">
               <Col className="col-sm-12 col-md-10 col-lg-10 text-center">
-                <h1 style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
-                  Our Mission, Vision and Values
+                <h1
+                  className="my-2"
+                  style={{ textTransform: 'uppercase', fontWeight: 'bold' }}
+                >
+                  Our Work
                 </h1>
-                <br></br>
 
-                <div className="p-4" style={{ width: '75%', margin: 'auto' }}>
+                <div style={{ width: '75%', margin: 'auto' }} className="pt-2">
                   <h5>
-                    <strong>Go and Build</strong> not only seeks to provide
-                    housing to those in need, but also help improve the health
-                    and safety of the Guatemalan community through advocacy,
-                    partnership and support.
+                    Through building safe, secure, and habitable homes, we can
+                    help Guatemalans improve their living conditions and make a
+                    meaningful difference in the lives of families living in
+                    extreme poverty.
                   </h5>
+                  <br></br>
+                  <h5>With your support, we can change their story!</h5>
                 </div>
               </Col>
             </Row>
@@ -45,113 +57,53 @@ function Body() {
       <Container>
         <Row sm={1} md={1} lg={1} className="d-flex justify-content-center">
           <Col>
-            <Carousel className="col-sm-12 col-md-10 col-md-10">
-              <Carousel.Item>
-                <Image
-                  className="d-block w-100"
-                  style={{ width: '125%' }}
-                  src={img2}
-                  alt="First slide"
-                />
-                {/* <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption> */}
-              </Carousel.Item>
-              <Carousel.Item>
-                <Image
-                  className="d-block w-100"
-                  style={{ width: '100%', height: '100%' }}
-                  src={img1}
-                  alt="Second slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <Image
-                  className="d-block w-100"
-                  style={{ width: '100%', height: '100%' }}
-                  src={img3}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-            </Carousel>
+            <ReactPlayer
+              // className='react-player'
+              url={videoGuatemala}
+              playing={true}
+              muted={false}
+              width={playerWidth}
+              height={playerHeight}
+              controls={true}
+              // onPause={playerPause}
+            />
           </Col>
         </Row>
       </Container>
 
-      <Container fluid>
-        <Row sm={1} md={1} lg={1} className="d-flex justify-content-center">
-          <Col className="text-center p-4 mt-5 after-about">
-            <Row sm={1} md={1} lg={1} className="d-flex justify-content-center">
-              <Col>
-                <h1
-                  className="p-3"
-                  style={{ color: 'white', textTransform: 'uppercase' }}
-                >
-                  GO AND BUILD VISION
-                </h1>
-
-                <div>
-                  <h5 style={{ color: 'white' }}>
-                    Our vision is to help families make dreams of stability and
-                    hope a reality.
-                  </h5>
-
-                  <br></br>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-
-      <Container fluid>
+      <Container fluid style={{ display: 'none' }}>
         <Row
           sm={1}
           md={1}
-          lg={2}
-          className="justify-content-center
-                    py-5
+          lg={1}
+          className="  justify-content-center
                     align-middle
                     wow animate__animated animate__fadeInLeft animate__slower"
         >
-          <Col>
-            <Image style={{ width: '100%', margin: 'auto' }} src={kidImage} />
-          </Col>
-          <Col>
-            <h1
-              className=" m-5"
-              style={{ textTransform: 'uppercase', fontWeight: 'bold' }}
-            >
-              Go and Build Core Values
-            </h1>
+          <Col className="text-center p-4 mt-5 after-about">
+            <div className="col-sm-10 col-md-6 col-lg-4 px-2 align-text-bottom">
+              <img style={{ width: '100%', margin: 'auto' }} src={kidImage} />
+            </div>
 
-            <h5>
-              <strong>Equity</strong> - creating collaborative partnerships to
-              eliminate barriers that perpetuate social, economic, and
-              environmental disparities through a commitment to the communities
-              we serve.
-            </h5>
+            <div className="col-sm-10 col-md-6 col-lg-5 my-5">
+              <h1
+                className="m-5"
+                style={{ textTransform: 'uppercase', fontWeight: 'bold' }}
+              >
+                GO AND BUILD
+              </h1>
 
-            <br></br>
-            <h5>
-              <strong>Compassion</strong> – practicing empathy, kindness and
-              respect and offering comfort to those in need.
-            </h5>
-
-            <br></br>
-            <h5>
-              <strong>Sustainability</strong> – participating in research of
-              energy, transportation, water, waste and food systems that
-              contribute to the construction of a sustainable community.
-            </h5>
-
-            <br></br>
-            <h5>
-              <strong>Teamwork</strong> - committing to the support of one
-              another while building and nurturing meaningful relationships to
-              meet our goals.
-            </h5>
+              <br></br>
+              <h5>
+                An organization committed to improve health and safety living
+                conditions for families in extreme poverty.
+              </h5>
+              <br></br>
+              <h5>
+                Through the construction of sustainable homes, we provide a
+                secure and dignified place to live.
+              </h5>
+            </div>
           </Col>
         </Row>
       </Container>
