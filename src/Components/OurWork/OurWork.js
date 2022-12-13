@@ -2,7 +2,7 @@ import React from 'react'
 
 import Body from './Body'
 
-function ContactUs() {
+function OurWork() {
   return (
     <>
       <Body />
@@ -10,4 +10,4 @@ function ContactUs() {
   )
 }
 
-export default ContactUs
+export default OurWork

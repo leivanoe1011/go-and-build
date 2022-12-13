@@ -29,7 +29,6 @@ function Body() {
 
     console.log('In handle submit')
     console.log(e.target)
-    console.log(form.current)
 
     // emailjs.sendForm('gmail', 'template_mcp3hp9', form.current, 'Z4AJtOVRkWhL8pEDT')
     emailjs
@@ -68,36 +67,32 @@ function Body() {
             <Form onSubmit={handleSubmit} ref={form}>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="firstName">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control name="firstName" placeholder="First Name" />
+                  <Form.Label htmlFor="firstName">First Name</Form.Label>
+                  <Form.Control placeholder="First Name" />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="lastName">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control name="lastName" placeholder="Last Name" />
+                  <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                  <Form.Control placeholder="Last Name" />
                 </Form.Group>
               </Row>
 
               <Form.Group className="mb-3" controlId="emailAddress">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  name="emailAddress"
-                  type="email"
-                  placeholder="Enter email"
-                />
+                <Form.Label htmlFor="emailAddress">Email</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="subject">
-                <Form.Label>Subject</Form.Label>
-                <Form.Control name="subject" placeholder="Subject" />
+                <Form.Label htmlFor="subject">Subject</Form.Label>
+                <Form.Control placeholder="Subject" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="messageInput">
-                <Form.Label>Comment</Form.Label>
-                <Form.Control name="messageInput" as="textarea" rows={3} />
+                <Form.Label htmlFor="messageInput">Comment</Form.Label>
+                <Form.Control as="textarea" rows={3} />
               </Form.Group>
 
               <Row>
@@ -110,7 +105,7 @@ function Body() {
             </Form>
           </Col>
           <Col>
-            <ListGroup className="borderless">
+            <ListGroup class="borderless">
               <ListGroup.Item className="mb-3">
                 <TelephoneFill className="col-1" /> Phone: + 1 909 766 0445
               </ListGroup.Item>

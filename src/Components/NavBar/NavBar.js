@@ -53,7 +53,7 @@ function NavScrollExample() {
               className="nav-link thumbnail"
               as={NavLink}
               eventKey="link-3"
-              to="/Contact"
+              to="/ContactUs"
             >
               CONTACT US
             </Nav.Link>
