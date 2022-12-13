@@ -110,15 +110,15 @@ function Body() {
             </Form>
           </Col>
           <Col>
-            <ListGroup className="borderless">
-              <ListGroup.Item className="mb-3">
+            <ListGroup className="borderless border border-0">
+              <ListGroup.Item className="mb-3 border border-0">
                 <TelephoneFill className="col-1" /> Phone: + 1 909 766 0445
               </ListGroup.Item>
-              <ListGroup.Item className="mb-3">
+              <ListGroup.Item className="mb-3 border border-0">
                 <PinMapFill className="col-1" />
                 Address: 10 W Bay State Street #1274, Alhambra CA 91802, USA
               </ListGroup.Item>
-              <ListGroup.Item className="mb-3">
+              <ListGroup.Item className="mb-3 border border-0">
                 <EnvelopeFill className="col-1" />
                 Email: <u style={{ color: 'blue' }}>partner@goandbuild.org</u>
               </ListGroup.Item>
