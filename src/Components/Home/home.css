@@ -1,0 +1,49 @@
+/* .h1-text{
+  font-size: calc(50px + 0.390625vw) !important;
+
+} */
+
+.after-about {
+  background-color: black;
+}
+
+.after-about-body {
+  color: white;
+  size: 55px;
+}
+
+.player-wrapper {
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: calc(60px + 0.75vw) !important;
+  }
+
+  h4 {
+    font-size: calc(14px + 0.75vw) !important;
+    font-weight: lighter;
+  }
+
+  h5 {
+    font-size: calc(14px + 0.75vw) !important;
+    font-weight: lighter;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  html {
+    font-size: 125%;
+  }
+}
+@media only screen and (min-width: 1536px) {
+  html {
+    font-size: 150%;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  html {
+    font-size: 187.5%;
+  }
+}
