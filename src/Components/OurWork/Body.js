@@ -55,8 +55,8 @@ function Body() {
       </Container>
 
       <Container>
-        <Row sm={1} md={1} lg={1} className="d-flex justify-content-center">
-          <Col>
+        <Row>
+          <Col className="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center wow animate__animated animate__zoomIn animate__slower">
             <ReactPlayer
               // className='react-player'
               url={videoGuatemala}

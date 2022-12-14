@@ -11,14 +11,13 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
-
 // End Bootstrap Components
 
 // Begin Images
-import kidImage from '../../img/Img_child_outdoor_edited_20220815.JPG'
-import img1 from '../../img/WhatWeDo/IMG_1605.PNG'
-import img2 from '../../img/WhatWeDo/SamuelSon.jpg'
-import img3 from '../../img/WhatWeDo/IMG_1602.PNG'
+// import kidImage from '../../img/Img_child_outdoor_edited_20220815.JPG'
+// import img1 from '../../img/WhatWeDo/IMG_1605.PNG'
+// import img2 from '../../img/WhatWeDo/SamuelSon.jpg'
+// import img3 from '../../img/WhatWeDo/IMG_1602.PNG'
 // End Images
 
 function Body() {
@@ -51,7 +50,7 @@ function Body() {
 
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row sm={1} md={1} lg={1} className="pt-lg-2">
           <Col xs lg="6">
             <h2 className="text-left my-4">Contact us</h2>

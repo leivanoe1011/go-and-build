@@ -15,8 +15,8 @@ function NavScrollExample() {
   const imageStyle = {
     marginTop: '-1vw',
     marginBottom: '-2vw',
-    width: '6rem',
-    height: '6rem',
+    width: '12vh',
+    height: '12vh',
   }
   return (
     <Navbar fixed="top" collapseOnSelect bg="light" expand="lg">
