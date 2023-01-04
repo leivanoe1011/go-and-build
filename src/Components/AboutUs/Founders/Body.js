@@ -1,4 +1,8 @@
-import React from 'react'
+import { React, useState } from 'react'
+
+//
+import { db } from '../../../firebase-config'
+//
 
 // Begin Bootstrap Components
 import Col from 'react-bootstrap/Col'
@@ -14,6 +18,9 @@ import noeFounder from '../../img/Founders/NoeLesterFounder.jpeg'
 //End Image Line
 
 function Body() {
+  const [openTrips, setOpenTrips] = useState([])
+  const openTripsCollectionRef = collection(db, 'OpenTrips')
+
   return (
     <>
       <Container>
