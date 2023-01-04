@@ -2,8 +2,8 @@ import { React, useRef } from 'react'
 import emailjs from 'emailjs-com'
 import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
-
 import 'react-toastify/dist/ReactToastify.css'
+
 // Begin Bootstrap Components
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'

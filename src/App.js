@@ -30,21 +30,20 @@ function App() {
       {/* The Link components in the NavBar must live within the Router component */}
 
       {/* Start of NavBar */}
-      <Container>
+      <Container className="pb-xs-5 pb-sm-5 pb-lg-1">
         <NavBar />
       </Container>
       {/* End of NavBar */}
 
-      <Container fluid style={{ paddingTop: '4rem' }}>
+      <Container fluid className="pt-xs-5 pt-sm-5 pt-lg-1">
         <Routes>
           <MainBody>{/* <Routes history={history} /> */}</MainBody>
         </Routes>
       </Container>
 
       {/* Footer */}
-      <Container fluid fixed="bottom" style={{ paddingTop: '5rem' }}>
-        <Footer />
-      </Container>
+      <Footer fixed="bottom" className="pt-xs-5 pt-sm-5 pt-lg-1 " />
+
       {/* End of Container */}
     </>
   )

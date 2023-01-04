@@ -39,7 +39,7 @@ function FirstHome() {
 
   return (
     <>
-      <Container fluid>
+      <Container>
         <Row className="d-flex justify-content-center">
           <Col className="col-sm-12 col-md-12 col-lg-12 text-center ">
             <Row className="row d-flex justify-content-center">
