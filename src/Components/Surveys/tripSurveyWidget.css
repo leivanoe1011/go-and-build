@@ -1,0 +1,13 @@
+.sd-action-bar {
+  margin: auto !important;
+  width: 50%;
+}
+.sd-btn {
+  background-color: #dc3545;
+  margin: auto;
+}
+
+.barChartDiv {
+  display: inline-block;
+  transform: rotate(90deg);
+}

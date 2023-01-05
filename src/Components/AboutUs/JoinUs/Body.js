@@ -1,5 +1,8 @@
+import emailjs from 'emailjs-com'
+import { collection, getDocs } from 'firebase/firestore'
 import { React, useEffect, useRef, useState } from 'react'
-
+import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
+import { toast } from 'react-toastify'
 import { db } from '../../../firebase-config'
 
 // Begin Bootstrap Components
@@ -9,6 +12,7 @@ import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import ListGroup from 'react-bootstrap/ListGroup'
 // End Bootstrap Components
 
 //Begin Surveys
@@ -19,7 +23,7 @@ import march2023OpenTripSurveyJson from './surveys/march2023OpenTripSurveyJson'
 import newYears2022SurveyJson from './surveys/newYears2022SurveyJson'
 //End Surveys
 
-import joinUsPic from '../../img/AboutUs/JoinOurTrip.jpeg'
+import joinUsPic from '../../../img/AboutUs/JoinOurTrip.jpeg'
 
 function Body() {
   const [openTrips, setOpenTrips] = useState([])

@@ -6,7 +6,7 @@ import WhatWeDo from '../WhatWeDo/WhatWeDo'
 import ContactUs from '../ContactUs/ContactUs'
 import OurWork from '../OurWork/OurWork'
 import AboutUs from '../AboutUs/AboutUs'
-import JoinUs from '../JoinUs/JoinUs'
+import JoinUs from '../AboutUs/JoinUs/JoinUs'
 // End Route Components
 
 function Router() {
