@@ -6,6 +6,7 @@ import WhatWeDo from '../WhatWeDo/WhatWeDo'
 import ContactUs from '../ContactUs/ContactUs'
 import OurWork from '../OurWork/OurWork'
 import AboutUs from '../AboutUs/AboutUs'
+import JoinUs from '../JoinUs/JoinUs'
 // End Route Components
 
 function Router() {
@@ -20,7 +21,7 @@ function Router() {
 
         <Route exact path="/AboutUs" element={<AboutUs />} />
         <Route exact path="/AboutUs/founders" element={<AboutUs />} />
-        <Route exact path="/AboutUs/joinus" element={<AboutUs />} />
+        <Route exact path="/AboutUs/joinus" element={<JoinUs />} />
         <Route exact path="/AboutUs/sponsorship" element={<AboutUs />} />
       </Routes>
     </>
