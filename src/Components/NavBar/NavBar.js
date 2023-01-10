@@ -15,8 +15,8 @@ function NavScrollExample() {
   const imageStyle = {
     marginTop: '-1vw',
     marginBottom: '-2vw',
-    width: '12vh',
-    height: '12vh',
+    width: '18vh',
+    height: '18vh',
   }
   return (
     <Navbar fixed="top" collapseOnSelect bg="light" expand="lg">
@@ -30,7 +30,7 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '100px', fontSize: '1.25vw' }}
             navbarScroll
           >
             <Nav.Link

@@ -8,9 +8,9 @@ import App from './App'
 // import AuthProvider from './Components/Context/AuthContext'
 import { HashRouter as Router } from 'react-router-dom'
 
-// import "./index.css";
+import './index.css'
 import './styles/common.css'
-import './styles/chatroom.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

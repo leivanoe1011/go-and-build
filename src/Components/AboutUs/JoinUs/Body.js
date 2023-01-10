@@ -64,16 +64,15 @@ function Body() {
 
   return (
     <>
-      <Container fluid>
-        <Row>
+      <Container>
+        <Row className="d-flex justify-content-center">
           <Col style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
-            {' '}
-            Join Us on our next Adventure!
+            <h1>Join Us on our next Adventure!</h1>
           </Col>
         </Row>
       </Container>
 
-      <Container>
+      <Container className="my-5">
         <Row>
           <Col>
             {' '}
@@ -93,7 +92,7 @@ function Body() {
         </Row>
       </Container>
 
-      <Container>
+      <Container className="my-5">
         <Row>
           <Col>
             {' '}
@@ -116,7 +115,7 @@ function Body() {
         </Row>
       </Container>
 
-      <Container>
+      <Container className="my-5">
         <Row>
           <Col>
             <TripSurveyWidget
@@ -139,7 +138,7 @@ function Body() {
         </Row>
       </Container>
 
-      <Container>
+      <Container className="my-5">
         <Row>
           <Col>
             {' '}

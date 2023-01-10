@@ -29,7 +29,7 @@ function Body() {
               className="my-2"
               style={{ textTransform: 'uppercase', fontWeight: 'bold' }}
             >
-              Our Work
+              Our Work About us
             </h1>
           </Col>
         </Row>

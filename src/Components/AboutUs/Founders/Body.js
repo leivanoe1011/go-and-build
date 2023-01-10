@@ -2,6 +2,8 @@ import { React, useState } from 'react'
 
 //
 import { db } from '../../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
+
 //
 
 // Begin Bootstrap Components
@@ -12,9 +14,9 @@ import Image from 'react-bootstrap/Image'
 // End Bootstrap Components
 
 // images
-import joseFounder from '../../img/Founders/JoseFounder.jpeg'
-import mannyFounder from '../../img/Founders/MannyFounder.jpeg'
-import noeFounder from '../../img/Founders/NoeLesterFounder.jpeg'
+import joseFounder from '../../../img/Founders/JoseFounder.jpeg'
+import mannyFounder from '../../../img/Founders/MannyFounder.jpeg'
+import noeFounder from '../../../img/Founders/NoeLesterFounder.jpeg'
 //End Image Line
 
 function Body() {
