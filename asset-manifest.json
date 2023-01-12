@@ -1,23 +1,29 @@
 {
   "files": {
-    "main.css": "/go-and-build/static/css/main.a1d6d080.css",
-    "main.js": "/go-and-build/static/js/main.af559d44.js",
+    "main.css": "/go-and-build/static/css/main.ec816b6f.css",
+    "main.js": "/go-and-build/static/js/main.cce98c68.js",
+    "static/media/MannyFounder.jpeg": "/go-and-build/static/media/MannyFounder.4817f18cf1d69753b4da.jpeg",
+    "static/media/NoeLesterFounder.jpeg": "/go-and-build/static/media/NoeLesterFounder.758b7ec942e314f41c14.jpeg",
     "static/media/MajoSamuel.jpg": "/go-and-build/static/media/MajoSamuel.478f78e0789407d2d467.jpg",
     "static/media/IMG_1605.PNG": "/go-and-build/static/media/IMG_1605.5bee5fe4366661445927.PNG",
     "static/media/SamuelDaughter.jpg": "/go-and-build/static/media/SamuelDaughter.bac29b7c1a30b6956847.jpg",
     "static/media/SamuelSon.jpg": "/go-and-build/static/media/SamuelSon.c396f930dd6ae538d65c.jpg",
+    "static/media/JoinOurTrip.jpeg": "/go-and-build/static/media/JoinOurTrip.e4aeaee5596ee9770d23.jpeg",
     "static/media/old_house.PNG": "/go-and-build/static/media/old_house.ae6d6d2ba9b03ae1efc1.PNG",
     "static/media/GoAndBuildLogo_20220817.png": "/go-and-build/static/media/GoAndBuildLogo_20220817.63fa762a088021593491.png",
     "static/media/IMG_1602.PNG": "/go-and-build/static/media/IMG_1602.1eb848ad61b407400b25.PNG",
     "static/media/759203aa-b36e-482e-a437-f12cee9b126d.jpg": "/go-and-build/static/media/759203aa-b36e-482e-a437-f12cee9b126d.7ec3e6d641b442086279.jpg",
     "static/media/home-that-needs-rebuilt.jpg": "/go-and-build/static/media/home-that-needs-rebuilt.61fd389f76cf6ed5de38.jpg",
+    "static/media/Founders.PNG": "/go-and-build/static/media/Founders.600416bcb442984fae99.PNG",
+    "static/media/JoseFounder.jpeg": "/go-and-build/static/media/JoseFounder.c6f55ebc3b6b890c2a39.jpeg",
+    "static/media/SponsorChild.jpeg": "/go-and-build/static/media/SponsorChild.f25aa31a085a773b5aa4.jpeg",
     "static/media/Img_child_outdoor_edited_20220815.JPG": "/go-and-build/static/media/Img_child_outdoor_edited_20220815.95ca0430d1859bb579be.JPG",
     "index.html": "/go-and-build/index.html",
-    "main.a1d6d080.css.map": "/go-and-build/static/css/main.a1d6d080.css.map",
-    "main.af559d44.js.map": "/go-and-build/static/js/main.af559d44.js.map"
+    "main.ec816b6f.css.map": "/go-and-build/static/css/main.ec816b6f.css.map",
+    "main.cce98c68.js.map": "/go-and-build/static/js/main.cce98c68.js.map"
   },
   "entrypoints": [
-    "static/css/main.a1d6d080.css",
-    "static/js/main.af559d44.js"
+    "static/css/main.ec816b6f.css",
+    "static/js/main.cce98c68.js"
   ]
 }
