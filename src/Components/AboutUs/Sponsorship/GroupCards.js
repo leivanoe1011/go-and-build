@@ -15,10 +15,6 @@ function GroupCards() {
     setPlayerData(SponsorKidsObj)
   }, [])
 
-  const RenderNewKey = (index, key) => {
-    return index + 1 * key
-  }
-
   const RenderInterestList = (data) => {
     return (
       <>
@@ -52,6 +48,7 @@ function GroupCards() {
             </Card.Body>
             <Card.Header>Age: {data.age}</Card.Header>
             {data.interests ? RenderInterestList(data) : null}
+            <div givebutter-element-id={data.link}></div>
             <Card.Text
               style={{ width: '5vw', height: '2vw' }}
               givebutter-element-id={data.link}

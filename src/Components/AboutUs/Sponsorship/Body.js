@@ -16,6 +16,9 @@ import 'react-toastify/dist/ReactToastify.css'
 function Body() {
   return (
     <>
+      <div givebutter-element-id="g8MKDp"></div>
+      <div givebutter-element-id="JLYeKL"></div>
+
       <Container>
         <Row>
           <Col className="text-center m-5">
