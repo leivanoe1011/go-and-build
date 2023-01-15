@@ -156,6 +156,7 @@ function Body() {
               tripData={getTripData('newYear2022')}
               tripName="New Year 2022"
               tripMessage="New Year 2022 Trip Likelyhood"
+              tripLabels={[1, 2, 3, 4, 5]}
             />
           </Col>
         </Row>
@@ -189,6 +190,7 @@ function Body() {
               tripData={getTripData('march2023')}
               tripName="March 2023"
               tripMessage="March 2023 Trip Likelyhood"
+              tripLabels={[1, 2, 3, 4, 5]}
             />
           </Col>
         </Row>
@@ -222,6 +224,7 @@ function Body() {
               tripData={getTripData('april2023')}
               tripName="April 2023"
               tripMessage="April 2023 Trip Likelyhood"
+              tripLabels={[1, 2, 3, 4, 5]}
             />
           </Col>
         </Row>

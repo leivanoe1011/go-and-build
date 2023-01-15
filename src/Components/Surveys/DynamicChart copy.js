@@ -34,9 +34,9 @@ function DynamicChart(props) {
         {
           label: props.tripName,
           data: dataSetObj,
-          borderWidth: 1,
-          borderColor: 'rgb(196, 65, 65)',
-          backgroundColor: 'rgba(220, 53, 69, 1)',
+          borderWidth: 2,
+          borderColor: 'rgb(53, 162, 235)',
+          backgroundColor: 'rgba(53, 162, 235, 0.4)',
         },
       ],
     })
@@ -50,7 +50,6 @@ function DynamicChart(props) {
         },
       },
       responsive: true,
-      scales: { x: { grid: { display: false } } },
       plugins: {
         legend: {
           position: 'right',
@@ -104,7 +103,7 @@ function DynamicChart(props) {
   }, [])
 
   return (
-    <div style={{ maxHeight: '50vw' }}>
+    <div>
       <Bar options={chartOptions} data={chartData} />
     </div>
   )
