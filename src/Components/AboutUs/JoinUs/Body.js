@@ -1,7 +1,26 @@
 import emailjs from 'emailjs-com'
-import { collection, getDocs } from 'firebase/firestore'
+import {
+  doc,
+  ref,
+  onSnapshot,
+  updateDoc,
+  setDoc,
+  deleteDoc,
+  collection,
+  serverTimestamp,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+} from 'firebase/firestore'
 import { React, useEffect, useRef, useState } from 'react'
-import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
+import {
+  EnvelopeFill,
+  PinMapFill,
+  Snapchat,
+  TelephoneFill,
+} from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
 import { db } from '../../../firebase-config'
 
@@ -21,6 +40,7 @@ import TripSurveyWidget from '../../Surveys/TripSurveyWidget'
 import april2023OpenTripSurveyJson from './surveys/april2023OpenTripSurveyJson'
 import march2023OpenTripSurveyJson from './surveys/march2023OpenTripSurveyJson'
 import newYears2022SurveyJson from './surveys/newYears2022SurveyJson'
+import DynamicChart from '../../Surveys/DynamicChart'
 //End Surveys
 
 import joinUsPic from '../../../img/AboutUs/JoinOurTrip.jpeg'
@@ -32,8 +52,6 @@ function Body() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    // emailjs.sendForm('gmail', 'template_mcp3hp9', form.current, 'Z4AJtOVRkWhL8pEDT')
     emailjs
       .sendForm('gmail', 'template_mpf7dvp', e.target, 'Z4AJtOVRkWhL8pEDT')
       .then(
@@ -51,15 +69,34 @@ function Body() {
       )
   }
 
-  const getOpenTrips = async () => {
-    const data = await getDocs(openTripsCollectionRef)
-    console.log('In get open trips')
-    console.log(data)
-    setOpenTrips(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  const getTripData = (tripName) => {
+    const q = query(openTripsCollectionRef, where('tripName', '==', tripName))
+    const tripLikelyHoodArr = []
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().surveyResponse.TripLikelyhood > 0)
+          tripLikelyHoodArr.push(doc.data().surveyResponse.TripLikelyhood)
+      })
+    })
+    return tripLikelyHoodArr
   }
 
   useEffect(() => {
-    getOpenTrips()
+    const getOpenTrips = async () => {
+      const data = await getDocs(openTripsCollectionRef)
+      setOpenTrips(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      return
+    }
+
+    // Check if the page has already loaded
+    if (document.readyState === 'complete') {
+      getOpenTrips()
+    } else {
+      window.addEventListener('load', getOpenTrips)
+      // Remove the event listener when component unmounts
+      return () => window.removeEventListener('load', getOpenTrips)
+    }
   }, [])
 
   return (
@@ -92,10 +129,10 @@ function Body() {
         </Row>
       </Container>
 
+      {/* Begin Trip */}
       <Container className="my-5">
         <Row>
           <Col>
-            {' '}
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -108,23 +145,33 @@ function Body() {
           </Col>
           <Col>
             <TripSurveyWidget
-              tripId="newYear2022"
+              tripId="march2023"
               surveyConfiguration={newYears2022SurveyJson}
             />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <DynamicChart
+              tripData={getTripData('newYear2022')}
+              tripName="New Year 2022"
+              tripMessage="New Year 2022 Trip Likelyhood"
+            />
+          </Col>
+        </Row>
       </Container>
+      {/* End Trip */}
 
+      {/* Begin Trip */}
       <Container className="my-5">
         <Row>
           <Col>
             <TripSurveyWidget
-              tripId="newYear2022"
+              tripId="march2023"
               surveyConfiguration={march2023OpenTripSurveyJson}
             />
           </Col>
           <Col>
-            {' '}
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -136,12 +183,22 @@ function Body() {
             PageMaker including versions of Lorem Ipsum.
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <DynamicChart
+              tripData={getTripData('march2023')}
+              tripName="March 2023"
+              tripMessage="March 2023 Trip Likelyhood"
+            />
+          </Col>
+        </Row>
       </Container>
+      {/* End Trip */}
 
+      {/* Begin Trip */}
       <Container className="my-5">
         <Row>
           <Col>
-            {' '}
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -154,12 +211,22 @@ function Body() {
           </Col>
           <Col>
             <TripSurveyWidget
-              tripId="newYear2022"
+              tripId="april2023"
               surveyConfiguration={april2023OpenTripSurveyJson}
             />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <DynamicChart
+              tripData={getTripData('april2023')}
+              tripName="April 2023"
+              tripMessage="April 2023 Trip Likelyhood"
+            />
+          </Col>
+        </Row>
       </Container>
+      {/* End Trip */}
 
       <Container>
         <Row>

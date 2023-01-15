@@ -12,7 +12,19 @@ function GroupCards() {
   const [playerData, setPlayerData] = useState([])
   useEffect(() => {
     // setPlayerData(SponsorKidsObj.slice(0, 15))
-    setPlayerData(SponsorKidsObj)
+
+    const onPageLoad = () => {
+      setPlayerData(SponsorKidsObj)
+    }
+
+    // Check if the page has already loaded
+    if (document.readyState === 'complete') {
+      onPageLoad()
+    } else {
+      window.addEventListener('load', onPageLoad)
+      // Remove the event listener when component unmounts
+      return () => window.removeEventListener('load', onPageLoad)
+    }
   }, [])
 
   const RenderInterestList = (data) => {
@@ -48,12 +60,10 @@ function GroupCards() {
             </Card.Body>
             <Card.Header>Age: {data.age}</Card.Header>
             {data.interests ? RenderInterestList(data) : null}
-            <div givebutter-element-id={data.link}></div>
-            <Card.Text
-              style={{ width: '5vw', height: '2vw' }}
-              givebutter-element-id={data.link}
-            ></Card.Text>
           </Card>
+          <div>
+            <span givebutter-element-id={data.link}></span>
+          </div>
         </Col>
       ))}
     </Row>
