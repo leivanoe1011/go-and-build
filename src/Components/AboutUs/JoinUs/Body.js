@@ -1,26 +1,13 @@
 import emailjs from 'emailjs-com'
 import {
-  doc,
-  ref,
   onSnapshot,
-  updateDoc,
-  setDoc,
-  deleteDoc,
   collection,
-  serverTimestamp,
   getDocs,
   query,
   where,
-  orderBy,
-  limit,
 } from 'firebase/firestore'
 import { React, useEffect, useRef, useState } from 'react'
-import {
-  EnvelopeFill,
-  PinMapFill,
-  Snapchat,
-  TelephoneFill,
-} from 'react-bootstrap-icons'
+import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
 import { db } from '../../../firebase-config'
 
@@ -35,7 +22,6 @@ import ListGroup from 'react-bootstrap/ListGroup'
 // End Bootstrap Components
 
 //Begin Surveys
-import TripSurveyGraph from '../../Surveys/TripSurveyGraph'
 import TripSurveyWidget from '../../Surveys/TripSurveyWidget'
 import april2023OpenTripSurveyJson from './surveys/april2023OpenTripSurveyJson'
 import march2023OpenTripSurveyJson from './surveys/march2023OpenTripSurveyJson'

@@ -5,15 +5,10 @@ import ReactPlayer from 'react-player'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
-import Carousel from 'react-bootstrap/Carousel'
 // End Bootstrap Components
 
 // Begin Images
 import kidImage from '../../img/Img_child_outdoor_edited_20220815.JPG'
-import img1 from '../../img/WhatWeDo/IMG_1605.PNG'
-import img2 from '../../img/WhatWeDo/SamuelSon.jpg'
-import img3 from '../../img/WhatWeDo/IMG_1602.PNG'
 // End Images
 
 // import kidImage from '../../img/Home/48086a28-4878-4682-81c6-300770c87d4c.jpg'

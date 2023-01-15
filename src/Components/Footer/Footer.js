@@ -4,9 +4,6 @@ import React from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import ListGroup from 'react-bootstrap/ListGroup'
 // End Bootstrap Components
 
 import './footer.css'
