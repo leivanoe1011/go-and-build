@@ -58,6 +58,10 @@ function DynamicChart(props) {
         title: {
           display: true,
           text: props.tripMessage,
+          font: {
+            size: '25vw',
+            family: 'Montserrat',
+          },
         },
       },
     })
@@ -70,7 +74,6 @@ function DynamicChart(props) {
         counter++
       }
     }
-
     return counter
   }
 
@@ -84,7 +87,6 @@ function DynamicChart(props) {
   }
 
   useEffect(() => {
-    console.log('in dynamic chart use effect')
     const aggregateTripCounts = async () => {
       setTripData(props.tripData.sort())
       renderAggregateCounts()
