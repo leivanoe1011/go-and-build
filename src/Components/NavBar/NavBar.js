@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useAuth } from '../AuthContext/AuthContext'
 
 // Begin Bootstrap Components
 import Container from 'react-bootstrap/Container'
@@ -12,11 +13,13 @@ import logo from '../../media/GoAndBuildLogo_20220817.png'
 import './services.css'
 
 function NavScrollExample() {
+  const auth = useAuth()
+
   const imageStyle = {
     marginTop: '-1vw',
     marginBottom: '-2vw',
-    width: '18vh',
-    height: '18vh',
+    width: '16vh',
+    height: '16vh',
   }
   return (
     <Navbar fixed="top" collapseOnSelect bg="light" expand="lg">
@@ -53,10 +56,29 @@ function NavScrollExample() {
               className="nav-link thumbnail"
               as={NavLink}
               eventKey="link-3"
-              to="/ContactUs"
+              to="/AboutUs/joinus"
             >
-              CONTACT US
+              JOIN US
             </Nav.Link>
+            {!auth.user ? (
+              <Nav.Link
+                className="nav-link thumbnail"
+                as={NavLink}
+                eventKey="link-3"
+                to="/ContactUs"
+              >
+                CONTACT US
+              </Nav.Link>
+            ) : (
+              <Nav.Link
+                className="nav-link thumbnail"
+                as={NavLink}
+                eventKey="link-3"
+                to="/AboutUs/editSponsorship"
+              >
+                CONTACT US
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
         <Nav className="text-center pt-md-2 d-none d-sm-none d-md-none">

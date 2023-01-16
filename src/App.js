@@ -3,6 +3,7 @@ import React from 'react'
 import WOW from 'wowjs'
 import { ToastContainer } from 'react-toastify'
 import Container from 'react-bootstrap/Container'
+import { AuthProvider } from './Components/AuthContext/AuthContext'
 
 // Components
 import NavBar from './Components/NavBar/NavBar'
@@ -22,7 +23,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <AuthProvider>
       <ToastContainer />
 
       {/* The Link components in the NavBar must live within the Router component */}
@@ -43,7 +44,7 @@ function App() {
       <Footer fixed="bottom" className="pt-xs-5 pt-sm-5 pt-lg-1 " />
 
       {/* End of Container */}
-    </>
+    </AuthProvider>
   )
 }
 
