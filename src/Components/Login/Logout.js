@@ -1,7 +1,6 @@
-import { React, useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../AuthContext/AuthContext'
-import makeToast from '../../Toaster'
 
 import { GoogleLogout } from 'react-google-login'
 
@@ -18,30 +17,24 @@ function Logout() {
   const redirectPath = location.state?.path || '/'
 
   const onSuccess = (res) => {
-    console.log('Login Success' + res)
     auth.logout()
     navigate(redirectPath, { replace: true })
   }
 
-  useEffect(() => {
-    console.log('in logout use effect')
-  })
   return (
     <>
       <Container>
         <Row>
-          <Col>In logout</Col>
-        </Row>
-      </Container>
-      <Container>
-        <Row>
-          <div id="signInButton">
-            <GoogleLogout
-              clientId={clientId}
-              buttonText="Logout"
-              onLogoutSuccess={onSuccess}
-            />
-          </div>
+          <Col>Logout Page will reset all login global variables</Col>
+          <Col>
+            <div id="signInButton">
+              <GoogleLogout
+                clientId={clientId}
+                buttonText="Logout"
+                onLogoutSuccess={onSuccess}
+              />
+            </div>
+          </Col>
         </Row>
       </Container>
     </>

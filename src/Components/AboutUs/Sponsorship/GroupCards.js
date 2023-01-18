@@ -4,15 +4,41 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-import SponsorKidsObj from './SponsorKidsObj'
+// Firebase
+import { rt_db as db } from '../../../firebase-config'
+import { onValue, ref } from 'firebase/database'
+// Firebase
 
 function GroupCards() {
-  const [playerData, setPlayerData] = useState([])
+  const [kidData, setKidData] = useState([])
+
   useEffect(() => {
-    // setPlayerData(SponsorKidsObj.slice(0, 15))
+    const getEnabledArray = (obj) => {
+      let result = []
+
+      if (obj !== null) {
+        obj.map((data) => {
+          if (data.enabled === 1) result.push(data)
+        })
+      }
+
+      return result
+    }
+
+    const getAllKids = () => {
+      onValue(ref(db), (snapshot) => {
+        const data = getEnabledArray(snapshot.val().kids)
+
+        setKidData([])
+        if (data !== null) {
+          setKidData(data)
+        }
+      })
+    }
 
     const onPageLoad = () => {
-      setPlayerData(SponsorKidsObj)
+      // setKidData(SponsorKidsObj)
+      getAllKids()
     }
 
     // Check if the page has already loaded
@@ -40,11 +66,19 @@ function GroupCards() {
 
   return (
     <Row xs={1} sm={1} md={2} lg={3}>
-      {playerData.map((data, k) => (
-        <Col style={{ paddingTop: '2vw' }}>
+      {kidData.map((data, k) => (
+        <Col key={k} style={{ paddingTop: '2vw' }}>
           <Card key={k} style={{ minWidth: '75%' }}>
+            <Card.Header className="d-flex justify-content-center">
+              {data.sponsored === 1 ? (
+                <h6>Sponsored</h6>
+              ) : (
+                <h6>Not Sponsored</h6>
+              )}
+            </Card.Header>
+
             <Card.Img
-              className="mx-auto d-block"
+              className="my-2 mx-auto d-block"
               style={{
                 minHeight: '20vw',
                 maxHeight: '22vw',

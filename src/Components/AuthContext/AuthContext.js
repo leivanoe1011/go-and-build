@@ -9,15 +9,14 @@ export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
   console.log('in Auth Provider')
   const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
 
   const login = (user) => {
-    console.log('in Auth Context login')
-    setUser(user)
-    console.log(user)
+    setUser(user.profileObj)
+    setToken(user.accessToken)
     makeToast('success', 'Successfully logged in')
   }
   const logout = () => {
-    console.log('In auth context logout')
     setUser(null)
     makeToast('success', 'Successfully logged out')
   }
@@ -36,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     // Children represents all the other components
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

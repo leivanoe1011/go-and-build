@@ -13,7 +13,7 @@ import AboutUs from '../AboutUs/AboutUs'
 import JoinUs from '../AboutUs/JoinUs/JoinUs'
 import Founders from '../AboutUs/Founders/Founders'
 import Sponsorship from '../AboutUs/Sponsorship/Sponsorship'
-import EditSponsorship from '../AboutUs/Sponsorship/EditSponsorship'
+import EditSponsorship from '../EditSponsorship/EditSponsorship'
 import Login from '../Login/Login'
 import Logout from '../Login/Logout'
 

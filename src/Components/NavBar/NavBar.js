@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useAuth } from '../AuthContext/AuthContext'
 
@@ -13,6 +13,7 @@ import logo from '../../media/GoAndBuildLogo_20220817.png'
 import './services.css'
 
 function NavScrollExample() {
+  const [user, setUser] = useState({})
   const auth = useAuth()
 
   const imageStyle = {
@@ -21,6 +22,10 @@ function NavScrollExample() {
     width: '16vh',
     height: '16vh',
   }
+
+  useEffect(() => {
+    setUser(auth.user)
+  })
   return (
     <Navbar fixed="top" collapseOnSelect bg="light" expand="lg">
       <Container>
@@ -76,7 +81,7 @@ function NavScrollExample() {
                 eventKey="link-3"
                 to="/AboutUs/editSponsorship"
               >
-                CONTACT US
+                SPONSORSHIP
               </Nav.Link>
             )}
           </Nav>
