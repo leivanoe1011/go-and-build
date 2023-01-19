@@ -1,6 +1,7 @@
 // The widget will intake the Model and also the trip ID
 import { React, useCallback } from 'react'
 import { collection, getDocs, addDoc } from 'firebase/firestore'
+import { update, onValue, ref, set } from 'firebase/database'
 import { db } from '../../firebase-config'
 
 import { Survey } from 'survey-react'
@@ -19,10 +20,8 @@ StylesManager.applyTheme('defaultV2')
 
 // Here we going to intake the Model and the Trip ID
 function TripSurveyWidget({ tripId, surveyConfiguration }) {
-  const openTripsCollectionRef = collection(db, 'OpenTrips')
-
   const addOpenTrips = async (survey) => {
-    await addDoc(openTripsCollectionRef, {
+    await set(ref(db, '/joinUsSurvey/'), {
       tripName: tripId,
       surveyResponse: survey,
     })

@@ -68,17 +68,22 @@ function DynamicChart(props) {
   }
 
   const checkOccurrence = (array, element) => {
+    console.log('CheckOccurrence ')
+    console.log(element)
     let counter = 0
-    for (let i = 0; i <= array.length; i++) {
-      if (array[i] === element) {
-        counter++
-      }
-    }
+    array.map((data) => {
+      if (parseInt(data.surveyResponse.TripLikelyhood) === element) counter++
+    })
+    console.log('counter count ')
+    console.log(counter)
     return counter
   }
 
   const renderAggregateCounts = () => {
+    console.log('in render aggregate counts')
     setLabelsObj(props.tripLabels)
+    console.log(labelsObj)
+
     labelsObj.map((label) => {
       dataSetObj.push(checkOccurrence(tripData, label))
     })
@@ -88,7 +93,9 @@ function DynamicChart(props) {
 
   useEffect(() => {
     const aggregateTripCounts = async () => {
+      console.log('in dynamic chart use effect')
       setTripData(props.tripData.sort())
+      console.log(tripData)
       renderAggregateCounts()
       addChartData()
 

@@ -1,15 +1,14 @@
 import emailjs from 'emailjs-com'
-import {
-  onSnapshot,
-  collection,
-  getDocs,
-  query,
-  where,
-} from 'firebase/firestore'
+
 import { React, useEffect, useRef, useState } from 'react'
 import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
-import { db } from '../../../firebase-config'
+
+// Firebase
+import { rt_db as db } from '../../../firebase-config'
+import { update, onValue, ref } from 'firebase/database'
+
+// Firebase
 
 // Begin Bootstrap Components
 import Col from 'react-bootstrap/Col'
@@ -35,7 +34,7 @@ import './joinUs.css'
 
 function Body() {
   const [openTrips, setOpenTrips] = useState([])
-  const openTripsCollectionRef = collection(db, 'OpenTrips')
+  const dbRef = ref(db, '/tripSurvey/joinUsSurvey/')
   const form = useRef()
 
   const handleSubmit = (e) => {
@@ -67,22 +66,20 @@ function Body() {
   }
 
   const getTripData = (tripName) => {
-    const q = query(openTripsCollectionRef, where('tripName', '==', tripName))
     const tripLikelyHoodArr = []
-
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (doc.data().surveyResponse.TripLikelyhood > 0)
-          tripLikelyHoodArr.push(doc.data().surveyResponse.TripLikelyhood)
-      })
+    openTrips.map((data) => {
+      if (data.tripName === tripName) tripLikelyHoodArr.push(data)
     })
     return tripLikelyHoodArr
   }
 
   useEffect(() => {
-    const getOpenTrips = async () => {
-      const data = await getDocs(openTripsCollectionRef)
-      setOpenTrips(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    const getOpenTrips = () => {
+      onValue(dbRef, (data) => {
+        var openTripSurveys = data.val()
+        setOpenTrips(openTripSurveys)
+      })
+
       return
     }
 
