@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ComponentState } from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,12 +20,23 @@ function DynamicChart(props) {
     datasets: [],
   })
 
+  const [loadCharts, setLoadCharts] = useState(props.loadedTrips)
+
   const [chartOptions, setChartOptions] = useState({})
+
   const [tripData, setTripData] = useState([])
-  // const labelsObj = []
+
   const [labelsObj, setLabelsObj] = useState([])
 
   const dataSetObj = []
+
+  const getTripData = (openTrips, tripName) => {
+    const tripLikelyHoodArr = []
+    openTrips.map((data) => {
+      if (data.tripName === tripName) tripLikelyHoodArr.push(data)
+    })
+    return tripLikelyHoodArr.sort()
+  }
 
   const addChartData = () => {
     setChartData({
@@ -68,21 +79,15 @@ function DynamicChart(props) {
   }
 
   const checkOccurrence = (array, element) => {
-    console.log('CheckOccurrence ')
-    console.log(element)
     let counter = 0
     array.map((data) => {
       if (parseInt(data.surveyResponse.TripLikelyhood) === element) counter++
     })
-    console.log('counter count ')
-    console.log(counter)
     return counter
   }
 
   const renderAggregateCounts = () => {
-    console.log('in render aggregate counts')
     setLabelsObj(props.tripLabels)
-    console.log(labelsObj)
 
     labelsObj.map((label) => {
       dataSetObj.push(checkOccurrence(tripData, label))
@@ -92,9 +97,11 @@ function DynamicChart(props) {
   }
 
   useEffect(() => {
+    console.log('in dynamic use effect')
+
+    setTripData(getTripData(props.AllTripData, props.tripId))
+
     const aggregateTripCounts = async () => {
-      console.log('in dynamic chart use effect')
-      setTripData(props.tripData.sort())
       console.log(tripData)
       renderAggregateCounts()
       addChartData()

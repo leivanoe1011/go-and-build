@@ -34,6 +34,8 @@ import './joinUs.css'
 
 function Body() {
   const [openTrips, setOpenTrips] = useState([])
+  const [loadOpenTrips, setLoadOpenTrips] = useState(false)
+
   const dbRef = ref(db, '/tripSurvey/joinUsSurvey/')
   const form = useRef()
 
@@ -65,21 +67,16 @@ function Body() {
     return counter
   }
 
-  const getTripData = (tripName) => {
-    const tripLikelyHoodArr = []
-    openTrips.map((data) => {
-      if (data.tripName === tripName) tripLikelyHoodArr.push(data)
-    })
-    return tripLikelyHoodArr
-  }
-
   useEffect(() => {
-    const getOpenTrips = () => {
+    const getOpenTrips = async () => {
       onValue(dbRef, (data) => {
         var openTripSurveys = data.val()
         setOpenTrips(openTripSurveys)
+        setLoadOpenTrips(true)
       })
+      console.log('after get open trips')
 
+      console.log(loadOpenTrips)
       return
     }
 
@@ -143,14 +140,17 @@ function Body() {
             />
           </Col>
         </Row>
-        {activeGraphBar('newYear2022') > 3 ? (
+
+        {loadOpenTrips && activeGraphBar('newYear2022') > 3 ? (
           <Row>
             <Col>
               <DynamicChart
-                tripData={getTripData('newYear2022')}
+                tripId="newYear2022"
                 tripName="New Year 2022"
                 tripMessage="New Year 2022 Trip Likelyhood"
                 tripLabels={[1, 2, 3, 4, 5]}
+                AllTripData={openTrips}
+                loadedTrips={loadOpenTrips}
               />
             </Col>
           </Row>
@@ -181,14 +181,16 @@ function Body() {
             PageMaker including versions of Lorem Ipsum.
           </Col>
         </Row>
-        {activeGraphBar('march2023') > 3 ? (
+        {loadOpenTrips && activeGraphBar('march2023') > 3 ? (
           <Row>
             <Col>
               <DynamicChart
-                tripData={getTripData('march2023')}
+                tripId="march2023"
                 tripName="March 2023"
                 tripMessage="March 2023 Trip Likelyhood"
                 tripLabels={[1, 2, 3, 4, 5]}
+                AllTripData={openTrips}
+                loadedTrips={loadOpenTrips}
               />
             </Col>
           </Row>
@@ -219,14 +221,16 @@ function Body() {
             />
           </Col>
         </Row>
-        {activeGraphBar('april2023') > 3 ? (
+        {loadOpenTrips && activeGraphBar('april2023') > 3 ? (
           <Row>
             <Col>
               <DynamicChart
-                tripData={getTripData('april2023')}
+                tripId="april2023"
                 tripName="April 2023"
                 tripMessage="April 2023 Trip Likelyhood"
                 tripLabels={[1, 2, 3, 4, 5]}
+                AllTripData={openTrips}
+                loadedTrips={loadOpenTrips}
               />
             </Col>
           </Row>
