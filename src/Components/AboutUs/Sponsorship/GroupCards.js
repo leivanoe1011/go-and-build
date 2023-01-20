@@ -11,6 +11,7 @@ import { onValue, ref } from 'firebase/database'
 
 function GroupCards() {
   const [kidData, setKidData] = useState([])
+  const dbRef = ref(db, '/sponsorKids/')
 
   useEffect(() => {
     const getEnabledArray = (obj) => {
@@ -26,7 +27,7 @@ function GroupCards() {
     }
 
     const getAllKids = () => {
-      onValue(ref(db), (snapshot) => {
+      onValue(dbRef, (snapshot) => {
         const data = getEnabledArray(snapshot.val().kids)
 
         setKidData([])

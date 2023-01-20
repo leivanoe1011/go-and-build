@@ -68,6 +68,8 @@ function Body() {
   }
 
   useEffect(() => {
+    setOpenTrips([])
+
     const getOpenTrips = async () => {
       onValue(dbRef, (data) => {
         var openTripSurveys = data.val()
@@ -77,6 +79,7 @@ function Body() {
       console.log('after get open trips')
 
       console.log(loadOpenTrips)
+      console.log(openTrips)
       return
     }
 

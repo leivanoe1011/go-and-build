@@ -15,12 +15,18 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 // I need the trip name
 // Also will need to get all the labels - I can pass this as a parameter
-function DynamicChart(props) {
+function DynamicChart({
+  tripName,
+  tripLabels,
+  tripMessage,
+  AllTripData,
+  tripId,
+}) {
   const [chartData, setChartData] = useState({
     datasets: [],
   })
 
-  const [loadCharts, setLoadCharts] = useState(props.loadedTrips)
+  const [loadCharts, setLoadCharts] = useState(AllTripData)
 
   const [chartOptions, setChartOptions] = useState({})
 
@@ -40,10 +46,10 @@ function DynamicChart(props) {
 
   const addChartData = () => {
     setChartData({
-      labels: props.tripLabels,
+      labels: tripLabels,
       datasets: [
         {
-          label: props.tripName,
+          label: tripName,
           data: dataSetObj,
           borderWidth: 1,
           borderColor: 'rgb(196, 65, 65)',
@@ -68,7 +74,7 @@ function DynamicChart(props) {
         },
         title: {
           display: true,
-          text: props.tripMessage,
+          text: tripMessage,
           font: {
             size: '25vw',
             family: 'Montserrat',
@@ -87,7 +93,7 @@ function DynamicChart(props) {
   }
 
   const renderAggregateCounts = () => {
-    setLabelsObj(props.tripLabels)
+    setLabelsObj(tripLabels)
 
     labelsObj.map((label) => {
       dataSetObj.push(checkOccurrence(tripData, label))
@@ -96,18 +102,21 @@ function DynamicChart(props) {
     return
   }
 
+  const aggregateTripCounts = async () => {
+    console.log(tripData)
+    renderAggregateCounts()
+    addChartData()
+
+    return
+  }
+
   useEffect(() => {
     console.log('in dynamic use effect')
+    console.log('')
 
-    setTripData(getTripData(props.AllTripData, props.tripId))
+    console.log(tripName)
 
-    const aggregateTripCounts = async () => {
-      console.log(tripData)
-      renderAggregateCounts()
-      addChartData()
-
-      return
-    }
+    setTripData(getTripData(AllTripData, tripId))
 
     // Check if the page has already loaded
     if (document.readyState === 'complete') {

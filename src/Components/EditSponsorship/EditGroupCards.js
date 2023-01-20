@@ -21,6 +21,7 @@ import Button from 'react-bootstrap/Button'
 
 function EditGroupCards() {
   const [kids, setKids] = useState([])
+  const dbRef = ref(db, '/sponsorKids/')
 
   const RenderInterestList = (data) => {
     return (
@@ -40,7 +41,7 @@ function EditGroupCards() {
     data.enabled = enable
 
     const updates = {}
-    updates[`/kids/${key}`] = data
+    updates[`/sponsorKids/kids/${key}`] = data
 
     return await update(ref(db), updates)
   }
@@ -50,14 +51,14 @@ function EditGroupCards() {
     data.sponsored = sponsored
 
     const updates = {}
-    updates[`/kids/${key}`] = data
+    updates[`/sponsorKids/kids/${key}`] = data
 
     return await update(ref(db), updates)
   }
 
   useEffect(() => {
     const getAllKids = () => {
-      onValue(ref(db), (snapshot) => {
+      onValue(dbRef, (snapshot) => {
         const data = snapshot.val()
         setKids([])
         if (data !== null) {
