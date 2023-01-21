@@ -1,8 +1,14 @@
 import emailjs from 'emailjs-com'
 
-import { React, useEffect, useRef, useState } from 'react'
+import { React, useRef } from 'react'
 import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
+
+// Firebase
+import { rt_db as db } from '../../../firebase-config'
+import { update, onValue, ref } from 'firebase/database'
+
+// Firebase
 
 // Begin Bootstrap Components
 import Col from 'react-bootstrap/Col'
@@ -27,6 +33,10 @@ import joinUsPic from '../../../img/AboutUs/JoinOurTrip.jpeg'
 import './joinUs.css'
 
 function Body() {
+  const [openTrips, setOpenTrips] = useState([])
+  const [loadOpenTrips, setLoadOpenTrips] = useState(false)
+
+  const dbRef = ref(db, '/tripSurvey/joinUsSurvey/')
   const form = useRef()
 
   const handleSubmit = (e) => {
@@ -47,6 +57,41 @@ function Body() {
         },
       )
   }
+
+  const activeGraphBar = (tripName) => {
+    let counter = 0
+    openTrips.map((item) => {
+      if (item.tripName === tripName) counter++
+    })
+
+    return counter
+  }
+
+  useEffect(() => {
+    setOpenTrips([])
+
+    const getOpenTrips = async () => {
+      onValue(dbRef, (data) => {
+        var openTripSurveys = data.val()
+        setOpenTrips(openTripSurveys)
+        setLoadOpenTrips(true)
+      })
+      console.log('after get open trips')
+
+      console.log(loadOpenTrips)
+      console.log(openTrips)
+      return
+    }
+
+    // Check if the page has already loaded
+    if (document.readyState === 'complete') {
+      getOpenTrips()
+    } else {
+      window.addEventListener('load', getOpenTrips)
+      // Remove the event listener when component unmounts
+      return () => window.removeEventListener('load', getOpenTrips)
+    }
+  }, [])
 
   return (
     <>
@@ -98,16 +143,23 @@ function Body() {
             />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <DynamicChart
-              tripId="newYear2022"
-              tripName="New Year 2022"
-              tripMessage="New Year 2022 Trip Likelyhood"
-              tripLabels={[1, 2, 3, 4, 5]}
-            />
-          </Col>
-        </Row>
+
+        {loadOpenTrips && activeGraphBar('newYear2022') > 3 ? (
+          <Row>
+            <Col>
+              <DynamicChart
+                tripId="newYear2022"
+                tripName="New Year 2022"
+                tripMessage="New Year 2022 Trip Likelyhood"
+                tripLabels={[1, 2, 3, 4, 5]}
+                AllTripData={openTrips}
+                loadedTrips={loadOpenTrips}
+              />
+            </Col>
+          </Row>
+        ) : (
+          <div></div>
+        )}
       </Container>
       {/* End Trip */}
 
@@ -132,16 +184,22 @@ function Body() {
             PageMaker including versions of Lorem Ipsum.
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <DynamicChart
-              tripId="march2023"
-              tripName="March 2023"
-              tripMessage="March 2023 Trip Likelyhood"
-              tripLabels={[1, 2, 3, 4, 5]}
-            />
-          </Col>
-        </Row>
+        {loadOpenTrips && activeGraphBar('march2023') > 3 ? (
+          <Row>
+            <Col>
+              <DynamicChart
+                tripId="march2023"
+                tripName="March 2023"
+                tripMessage="March 2023 Trip Likelyhood"
+                tripLabels={[1, 2, 3, 4, 5]}
+                AllTripData={openTrips}
+                loadedTrips={loadOpenTrips}
+              />
+            </Col>
+          </Row>
+        ) : (
+          <div></div>
+        )}
       </Container>
       {/* End Trip */}
 
@@ -166,16 +224,22 @@ function Body() {
             />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <DynamicChart
-              tripId="april2023"
-              tripName="April 2023"
-              tripMessage="April 2023 Trip Likelyhood"
-              tripLabels={[1, 2, 3, 4, 5]}
-            />
-          </Col>
-        </Row>
+        {loadOpenTrips && activeGraphBar('april2023') > 3 ? (
+          <Row>
+            <Col>
+              <DynamicChart
+                tripId="april2023"
+                tripName="April 2023"
+                tripMessage="April 2023 Trip Likelyhood"
+                tripLabels={[1, 2, 3, 4, 5]}
+                AllTripData={openTrips}
+                loadedTrips={loadOpenTrips}
+              />
+            </Col>
+          </Row>
+        ) : (
+          <div></div>
+        )}
       </Container>
       {/* End Trip */}
 

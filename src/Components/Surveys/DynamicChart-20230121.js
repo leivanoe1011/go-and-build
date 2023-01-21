@@ -11,24 +11,22 @@ import {
 import { Bar } from 'react-chartjs-2'
 import './tripSurveyWidget.css'
 
-// Firebase
-import { rt_db as db } from '../../firebase-config'
-import { update, onValue, ref } from 'firebase/database'
-// Firebase
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 // I need the trip name
 // Also will need to get all the labels - I can pass this as a parameter
-function DynamicChart(props) {
+function DynamicChart({
+  tripName,
+  tripLabels,
+  tripMessage,
+  AllTripData,
+  tripId,
+}) {
   const [chartData, setChartData] = useState({
     datasets: [],
   })
-  const dbRef = ref(db, '/tripSurvey/joinUsSurvey/')
 
-  const { tripId, tripName, tripMessage, tripLabels } = props
-
-  const [openTrips, setOpenTrips] = useState([])
+  const [loadCharts, setLoadCharts] = useState(AllTripData)
 
   const [chartOptions, setChartOptions] = useState({})
 
@@ -106,66 +104,34 @@ function DynamicChart(props) {
 
   const aggregateTripCounts = async () => {
     console.log(tripData)
-
-    setTripData(getTripData(openTrips, tripId))
-
     renderAggregateCounts()
-
     addChartData()
 
     return
   }
 
-  // We need to use this function to either return Survey graph or NULL
-  const activeGraphBar = (tripId) => {
-    console.log('In active graph function')
-    console.log(tripId)
-    let counter = 0
-    openTrips.map((item) => {
-      if (item.tripName === tripId) counter++
-    })
-
-    console.log(counter)
-
-    return counter
-  }
-
-  const getOpenTrips = async () => {
-    onValue(dbRef, (data) => {
-      var openTripSurveys = data.val()
-      setOpenTrips(openTripSurveys)
-    })
-    console.log('after get open trips')
-    console.log(openTrips)
-
-    aggregateTripCounts()
-  }
-
   useEffect(() => {
     console.log('in dynamic use effect')
     console.log('')
+
     console.log(tripName)
+
+    setTripData(getTripData(AllTripData, tripId))
 
     // Check if the page has already loaded
     if (document.readyState === 'complete') {
-      getOpenTrips()
+      aggregateTripCounts()
     } else {
-      window.addEventListener('load', getOpenTrips)
+      window.addEventListener('load', aggregateTripCounts)
       // Remove the event listener when component unmounts
-      return () => window.removeEventListener('load', getOpenTrips)
+      return () => window.removeEventListener('load', aggregateTripCounts)
     }
   }, [])
 
   return (
-    <>
-      {activeGraphBar(tripId) > 3 ? (
-        <div style={{ maxHeight: '50vw' }}>
-          <Bar options={chartOptions} data={chartData} />
-        </div>
-      ) : (
-        <div></div>
-      )}
-    </>
+    <div style={{ maxHeight: '50vw' }}>
+      <Bar options={chartOptions} data={chartData} />
+    </div>
   )
 }
 export default DynamicChart
