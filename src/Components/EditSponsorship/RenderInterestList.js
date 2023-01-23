@@ -28,8 +28,6 @@ function RenderInterestList(props) {
     props.cardData.interests != null ? props.cardData.interests : null,
   )
 
-  const dbRef = ref(db, '/sponsorKids/')
-
   const cardId = props.id
 
   const getArrayCount = () => {
@@ -62,7 +60,7 @@ function RenderInterestList(props) {
 
   const newListItem = (e) => {
     const dataList = Object.assign([], data)
-    dataList.push(e)
+    dataList.push('')
     setData(dataList)
   }
 
@@ -86,16 +84,35 @@ function RenderInterestList(props) {
             {data.map((item, i) => (
               <ListGroup.Item key={i}>
                 {/* {item} */}
-                <input
-                  type="text"
-                  value={item}
-                  onChange={(e) => {
-                    changeListItem(e, i)
-                  }}
-                />
+                <Container>
+                  <Row>
+                    <Col xs={8}>
+                      <input
+                        type="text"
+                        value={item}
+                        onChange={(e) => {
+                          changeListItem(e, i)
+                        }}
+                      />
+                    </Col>
+                    <Col>
+                      <Button
+                        onClick={(e) => {
+                          deleteListItem(i, e)
+                        }}
+                        variant="danger"
+                      >
+                        x
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
               </ListGroup.Item>
             ))}
-          </ListGroup>{' '}
+          </ListGroup>
+          <Button onClick={newListItem} variant="primary">
+            Add New Interest
+          </Button>
           <Container>
             <Row>
               <Col>
@@ -110,8 +127,8 @@ function RenderInterestList(props) {
         <Container>
           <Row>
             <Col>
-              <Button onClick={saveListItem} variant="link">
-                Save Changes
+              <Button onClick={newListItem} variant="primary">
+                Add New Interest
               </Button>
             </Col>
           </Row>
