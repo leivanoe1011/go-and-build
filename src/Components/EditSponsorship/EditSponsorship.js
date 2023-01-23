@@ -54,6 +54,7 @@ function EditSponsorship() {
       </Container>
 
       <Container fluid style={{ fontSize: '0.65rem' }}>
+        <p>something</p>
         <EditGroupCards />
       </Container>
     </>

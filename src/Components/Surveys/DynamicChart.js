@@ -26,7 +26,7 @@ function DynamicChart(props) {
   })
   const dbRef = ref(db, '/tripSurvey/joinUsSurvey/')
 
-  const { tripId, tripName, tripMessage, tripLabels } = props
+  const { tripId, tripName, tripMessage, tripLabels, done } = props
 
   const [openTrips, setOpenTrips] = useState([])
 
@@ -119,6 +119,8 @@ function DynamicChart(props) {
   // We need to use this function to either return Survey graph or NULL
   const activeGraphBar = (tripId) => {
     console.log('In active graph function')
+    console.log('In active graph function')
+
     console.log(tripId)
     let counter = 0
     openTrips.map((item) => {
@@ -134,16 +136,17 @@ function DynamicChart(props) {
     onValue(dbRef, (data) => {
       var openTripSurveys = data.val()
       setOpenTrips(openTripSurveys)
+      aggregateTripCounts()
+      done(true)
     })
+
     console.log('after get open trips')
     console.log(openTrips)
-
-    aggregateTripCounts()
   }
 
   useEffect(() => {
     console.log('in dynamic use effect')
-    console.log('')
+
     console.log(tripName)
 
     // Check if the page has already loaded

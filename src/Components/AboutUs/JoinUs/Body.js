@@ -1,6 +1,6 @@
 import emailjs from 'emailjs-com'
 
-import { React, useEffect, useRef, useState } from 'react'
+import { React, useEffect, useRef, useState, Suspense } from 'react'
 import { EnvelopeFill, PinMapFill, TelephoneFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
 
@@ -29,6 +29,12 @@ import './joinUs.css'
 function Body() {
   const form = useRef()
 
+  const [newYearLoading, setNewYearLoading] = useState(false)
+
+  const [marchLoading, setMarchLoading] = useState(false)
+
+  const [aprilLoading, setAprilLoading] = useState(false)
+
   const handleSubmit = (e) => {
     e.preventDefault()
     emailjs
@@ -46,6 +52,18 @@ function Body() {
           console.log(error.text)
         },
       )
+  }
+
+  function handleNewYearChange(newValue) {
+    setNewYearLoading(newValue)
+  }
+
+  function handleMarchChange(newValue) {
+    setMarchLoading(newValue)
+  }
+
+  function handleAprilChange(newValue) {
+    setAprilLoading(newValue)
   }
 
   return (
@@ -100,12 +118,15 @@ function Body() {
         </Row>
         <Row>
           <Col>
-            <DynamicChart
-              tripId="newYear2022"
-              tripName="New Year 2022"
-              tripMessage="New Year 2022 Trip Likelyhood"
-              tripLabels={[1, 2, 3, 4, 5]}
-            />
+            {newYearLoading ? (
+              <DynamicChart
+                tripId="newYear2022"
+                tripName="New Year 2022"
+                tripMessage="New Year 2022 Trip Likelyhood"
+                tripLabels={[1, 2, 3, 4, 5]}
+                done={handleNewYearChange}
+              />
+            ) : null}
           </Col>
         </Row>
       </Container>
@@ -134,12 +155,15 @@ function Body() {
         </Row>
         <Row>
           <Col>
-            <DynamicChart
-              tripId="march2023"
-              tripName="March 2023"
-              tripMessage="March 2023 Trip Likelyhood"
-              tripLabels={[1, 2, 3, 4, 5]}
-            />
+            {marchLoading ? (
+              <DynamicChart
+                tripId="march2023"
+                tripName="March 2023"
+                tripMessage="March 2023 Trip Likelyhood"
+                tripLabels={[1, 2, 3, 4, 5]}
+                done={handleMarchChange}
+              />
+            ) : null}
           </Col>
         </Row>
       </Container>
@@ -168,12 +192,15 @@ function Body() {
         </Row>
         <Row>
           <Col>
-            <DynamicChart
-              tripId="april2023"
-              tripName="April 2023"
-              tripMessage="April 2023 Trip Likelyhood"
-              tripLabels={[1, 2, 3, 4, 5]}
-            />
+            {aprilLoading ? (
+              <DynamicChart
+                tripId="april2023"
+                tripName="April 2023"
+                tripMessage="April 2023 Trip Likelyhood"
+                tripLabels={[1, 2, 3, 4, 5]}
+                done={handleAprilChange}
+              />
+            ) : null}
           </Col>
         </Row>
       </Container>

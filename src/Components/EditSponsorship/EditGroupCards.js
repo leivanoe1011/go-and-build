@@ -19,22 +19,11 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 // End Bootstrap
 
+import RenderInterestList from './RenderInterestList'
+
 function EditGroupCards() {
   const [kids, setKids] = useState([])
   const dbRef = ref(db, '/sponsorKids/')
-
-  const RenderInterestList = (data) => {
-    return (
-      <>
-        <Card.Header>Interests</Card.Header>
-        <ListGroup>
-          {data.interests.map((item, i) => (
-            <ListGroup.Item key={i}>{item}</ListGroup.Item>
-          ))}
-        </ListGroup>
-      </>
-    )
-  }
 
   const handleEnableKid = async (data, key) => {
     let enable = data.enabled === 1 ? 0 : 1
@@ -51,7 +40,16 @@ function EditGroupCards() {
     data.sponsored = sponsored
 
     const updates = {}
-    updates[`/sponsorKids/kids/${key}`] = data
+    updates[`/sponsorKids/kids/${key}`] = {
+      name: 'WAGNER CALET PASCUAL PARACHICO',
+      age: 4,
+      interests: ['Fire Fighter', 'Futbol'],
+      image:
+        'https://raw.githubusercontent.com/leivanoe1011/go-n-build/master/src/img/Sponsorship/NuevaEsperanza/WAGNER-CALET-PASCUAL-PARACHICO.jpg',
+      link: 'pdVEyL',
+      sponsored: 0,
+      enabled: 1,
+    }
 
     return await update(ref(db), updates)
   }
@@ -146,11 +144,8 @@ function EditGroupCards() {
               <Card.Title>{data.name}</Card.Title>
             </Card.Body>
             <Card.Header>Age: {data.age}</Card.Header>
-            {data.interests ? RenderInterestList(data) : null}
+            <RenderInterestList id={k} cardData={data} />
           </Card>
-          <div>
-            <span givebutter-element-id={data.link}></span>
-          </div>
         </Col>
       ))}
     </Row>
