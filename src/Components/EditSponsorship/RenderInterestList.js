@@ -110,16 +110,28 @@ function RenderInterestList(props) {
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <Button onClick={newListItem} variant="primary">
-            Add New Interest
-          </Button>
           <Container>
-            <Row>
-              <Col>
-                <Button onClick={saveListItem} variant="link">
-                  Save Changes
+            <Row className="d-flex justify-content-end">
+              <Col xs={6}>
+                <Button
+                  style={{ fontSize: '1vw', margin: '0.25vw' }}
+                  onClick={newListItem}
+                  variant="primary"
+                >
+                  Add New Interest
                 </Button>
               </Col>
+            </Row>
+          </Container>
+          <Container>
+            <Row>
+              <Card.Header>
+                <Col>
+                  <Button onClick={saveListItem} variant="link">
+                    Save Changes
+                  </Button>
+                </Col>
+              </Card.Header>
             </Row>
           </Container>{' '}
         </>
