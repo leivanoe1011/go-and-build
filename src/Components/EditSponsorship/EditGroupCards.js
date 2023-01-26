@@ -144,6 +144,10 @@ function EditGroupCards() {
               <Card.Title>{data.name}</Card.Title>
             </Card.Body>
             <Card.Header>Age: {data.age}</Card.Header>
+            <Card.Header>
+              {' '}
+              Sponsor Page: <a href={data.campaign}> {data.name} </a>
+            </Card.Header>
             <RenderInterestList id={k} cardData={data} />
           </Card>
         </Col>
