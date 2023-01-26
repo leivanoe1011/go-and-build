@@ -40,16 +40,7 @@ function EditGroupCards() {
     data.sponsored = sponsored
 
     const updates = {}
-    updates[`/sponsorKids/kids/${key}`] = {
-      name: 'WAGNER CALET PASCUAL PARACHICO',
-      age: 4,
-      interests: ['Fire Fighter', 'Futbol'],
-      image:
-        'https://raw.githubusercontent.com/leivanoe1011/go-n-build/master/src/img/Sponsorship/NuevaEsperanza/WAGNER-CALET-PASCUAL-PARACHICO.jpg',
-      link: 'pdVEyL',
-      sponsored: 0,
-      enabled: 1,
-    }
+    updates[`/sponsorKids/kids/${key}`] = data
 
     return await update(ref(db), updates)
   }
@@ -144,10 +135,15 @@ function EditGroupCards() {
               <Card.Title>{data.name}</Card.Title>
             </Card.Body>
             <Card.Header>Age: {data.age}</Card.Header>
-            <Card.Header>
-              {' '}
-              Sponsor Page: <a href={data.campaign}> {data.name} </a>
-            </Card.Header>
+            {data.sponsored === 0 ? (
+              <Card.Header>
+                Sponsor Page: <a href={data.campaign}> {data.name} </a>
+              </Card.Header>
+            ) : (
+              <Card.Header>
+                Sponsor Page: <a> {data.name} </a>
+              </Card.Header>
+            )}
             <RenderInterestList id={k} cardData={data} />
           </Card>
         </Col>
